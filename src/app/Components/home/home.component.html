@@ -1,0 +1,64 @@
+<section class="home">
+    <div class="container">
+        <h1>Currency Exchanger</h1>
+        <div class="exchanger-body">
+            <div class="row">
+                <div class="col-5 Amount">
+                    <div>
+                        <label for="amount">Amount</label>
+                        <input [(ngModel)]="amountValue" (focus)="ClearInput($event)" type="number" class="form"  name="" id="amount">
+                    </div>
+                    <div class="CurrencyCondation">
+                        <p>1.00 {{from}} = {{currencyRate}} {{to}}</p>
+                    </div>
+                </div>
+
+                
+                
+                <div class="col-7">
+                    <div class="CurrencyChange">
+                        <div class="from">
+                            <label for="From">From</label>
+                            <select  name="" id="From" class="form cursor">
+                                <option selected value="EUR" >EUR</option>
+                            </select>
+                        </div>
+                        <div class="ExchangeIcon">
+                            <i class="fa-solid fa-arrow-right-arrow-left fa-2x"></i>
+                        </div>
+                        <div class="to">
+                            <label for="to">To</label>
+                            <select (change)="To($event)" name="" id="to" class="form cursor" >
+                                <option *ngFor="let Currency of Currencies |keyvalue" [selected]="Currency.key=='USD'" [value]="Currency.key" >{{Currency.key}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <button (click)="convert()" [ngClass]="amountValue==0||''? 'disabled-button' :''"  class="ConvertBtn " [disabled]="amountValue==0||''">Convert</button>
+                    </div>
+                    <div class="details">
+                        <p class="Amountexchange">{{ExchangeAmount}} {{to}}</p>
+                        <button [routerLink]="['/Details',to]" class="Detailbtn"> More Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="popularCurrencies">
+            <div *ngIf="amountValue==0||''" class="row ">
+                <div  class="col-4 Currencies" *ngFor="let x of Topcurrecies|keyvalue">
+                    <p>1.00 EUR = {{x.value.toFixed(2)}} {{x.key}}</p>
+                </div>
+            </div>
+            <div *ngIf="amountValue>0&&Convert==true" class="row ">
+                <div  class="col-4 Currencies" *ngFor="let x of Topcurrecies|keyvalue">
+                    <p>1.00 EUR = {{((x.value)*ConvertedAmoutTotop).toFixed(2)}} {{x.key}}</p>
+                </div>
+            </div>
+    
+        </div>
+
+    </div>
+
+
+</section>

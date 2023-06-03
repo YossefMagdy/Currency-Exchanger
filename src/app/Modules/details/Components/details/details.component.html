@@ -1,0 +1,83 @@
+<section class="Details">
+    <div class="container">
+       <div class="Detail-title">
+        <h1>Eur - Europeam Union Euro</h1>
+        <button routerLink="/home" class="Detailbtn">Back to Home</button>
+       </div>
+        <div class="exchanger-body">
+            <div class="row">
+                <div class="col-5 Amount">
+                    <div>
+                        <label for="amount">Amount</label>
+                        <input [(ngModel)]="amountValue" (focus)="ClearInput($event)" type="number" class="form"  name="amountValue" id="amount">
+                    </div>
+                    <div class="CurrencyCondation">
+                        <p>1.00 {{from}} = {{currencyRate}} {{ChosenCurrency}}</p>
+                    </div>
+                </div>
+
+                
+                
+                <div class="col-7">
+                    <div class="CurrencyChange">
+                        <div class="from">
+                            <label for="From">From</label>
+                            <select disabled name="" id="From" name="BaseCurrency" class="form cursor">
+                                <option value="EUR cursor" >EUR</option>
+                            </select>
+                        </div>
+                        <div class="ExchangeIcon">
+                            <i class="fa-solid fa-arrow-right-arrow-left fa-2x"></i>
+                        </div>
+                        <div class="to">
+                            <label for="to">To</label>
+                            <select (change)="Goto($event)" name="to" id="to" class="form cursor">
+                                <option *ngFor="let Currency of Currencies |keyvalue"     [selected]="Currency.key==this.ChosenCurrency" [value]="Currency.key">{{Currency.key}}</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <button (click)="convert()" [ngClass]="amountValue==0||''? 'disabled-button' :''"  class="ConvertBtn " [disabled]="amountValue==0">Convert</button>
+                    </div>
+                    <div class="details">
+                        <p class="Amountexchange">{{ExchangeAmount}} {{ChosenCurrency}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="popularCurrencies Currencies">
+           <div class="row">
+        <div class="col-9">
+            <owl-carousel-o [options]="customOptions" >
+
+                <ng-container  >
+                  <ng-template  carouselSlide *ngFor="let slide of monthNames;let i=index">
+                    <div (click)="GetMonth($event,i)"    [ngClass]="{'active':slide==currentMonth,'disabled-button':i>MonthIndex} " class="Carousel  h2h cursor">
+                        {{slide}}
+                    </div>
+                  </ng-template>
+                </ng-container>
+            
+              </owl-carousel-o>
+        </div>
+        <div class="col-3">
+            <select (change)="getYear($event)"  name="Years" id="" style="margin-top: 12px;"  class="form ">
+                <option *ngFor="let Year of Years" [selected]="Year == CurrentYear" [value]="Year">{{Year}}</option>
+            </select>
+        </div>
+           </div>
+            <div class="row ">
+                <div class="col-12 "> 
+                    <p>1.00 {{from}} = {{HistoryRate}} {{ChosenCurrency}}</p>
+                </div>
+             
+            </div>
+          
+        </div>
+
+    </div>
+
+
+</section>

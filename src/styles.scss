@@ -1,0 +1,30 @@
+/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container{
+    padding: 20px;
+   
+}
+body{
+    background-color: black;
+}
+.btn{
+    padding: 10px;
+    background-color: #4c4e52;
+    border: 1px solid white;
+    cursor: pointer;
+    margin-right: 15px;
+    border-radius: 5px;
+    color:white;
+    transition: 1s all;
+}
+
+.btn:hover{
+    background-color: #006ce0;
+}
+.cursor{
+    cursor: pointer;
+}
